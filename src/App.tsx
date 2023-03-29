@@ -2,6 +2,7 @@ import { ConnectButton, useWallet } from "@suiet/wallet-kit";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GitHubButton from "react-github-btn";
 function App() {
     const wallet = useWallet();
 
@@ -44,6 +45,7 @@ function App() {
 
     return (
         <div className="h-screen grid place-items-center px-8">
+            <ToastContainer />
             <div className="max-w-md w-full">
                 <div className="flex justify-center">
                     <ConnectButton className="bg-lime-300 text-black rounded-lg hover:bg-lime-500" />
@@ -85,7 +87,22 @@ function App() {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
+
+            <div className="flex gap-4">
+                <GitHubButton
+                    href="https://github.com/soneryildirimx"
+                    aria-label="Follow @soneryildirimx on GitHub"
+                >
+                    Follow @soneryildirimx
+                </GitHubButton>
+                <GitHubButton
+                    href="https://github.com/soneryildirimx/sui-faucet"
+                    data-icon="octicon-star"
+                    aria-label="Star soneryildirimx/sui-faucet on GitHub"
+                >
+                    Star
+                </GitHubButton>
+            </div>
         </div>
     );
 }
