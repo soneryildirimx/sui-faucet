@@ -43,7 +43,7 @@ function App() {
     };
 
     return (
-        <div className="h-screen grid place-items-center">
+        <div className="h-screen grid place-items-center px-8">
             <div className="max-w-md w-full">
                 <div className="flex justify-center">
                     <ConnectButton className="bg-lime-300 text-black rounded-lg hover:bg-lime-500" />
