@@ -1,5 +1,7 @@
 import { ConnectButton, useWallet } from "@suiet/wallet-kit";
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
     const wallet = useWallet();
 
@@ -11,19 +13,33 @@ function App() {
     }, [wallet.connected]);
 
     const handleTransfer = async () => {
-        const response = await fetch("https://faucet.devnet.sui.io/gas", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                FixedAmountRequest: {
-                    recipient: address,
-                },
-            }),
+        toast("Sending..", {
+            isLoading: true,
+            toastId: "sending",
         });
-        const data = await response.json();
-        console.log(data);
+
+        try {
+            const response = await fetch("https://faucet.devnet.sui.io/gas", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    FixedAmountRequest: {
+                        recipient: address,
+                    },
+                }),
+            });
+            toast("Success", {
+                type: "success",
+            });
+        } catch (error) {
+            toast("Something went wrong. Try again later.", {
+                type: "error",
+            });
+        } finally {
+            toast.dismiss("sending");
+        }
     };
 
     return (
@@ -58,15 +74,18 @@ function App() {
                             )}
                         </div>
 
-                        <button
-                            onClick={handleTransfer}
-                            className="bg-lime-300 rounded h-10  mt-6 w-full text-black font-semibold hover:bg-lime-500"
-                        >
-                            Get SUI
-                        </button>
+                        {address.length > 0 && (
+                            <button
+                                onClick={handleTransfer}
+                                className="bg-lime-300 rounded h-10  mt-6 w-full text-black font-semibold hover:bg-lime-500"
+                            >
+                                Get SUI
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
