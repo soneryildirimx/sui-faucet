@@ -48,7 +48,7 @@ function App() {
             <ToastContainer />
             <div className="max-w-md w-full">
                 <div className="flex justify-center">
-                    <ConnectButton className="bg-lime-300 text-black rounded-lg hover:bg-lime-500" />
+                    <ConnectButton className="bg-[#6FBCF0] text-white rounded-lg hover:bg-white hover:text-[#6FBCF0]" />
                 </div>
                 <div className="flex items-center gap-6 my-6">
                     <div className="w-full h-[2px] bg-gray-300"></div>
@@ -79,7 +79,7 @@ function App() {
                         {address.length > 0 && (
                             <button
                                 onClick={handleTransfer}
-                                className="bg-lime-300 rounded h-10  mt-6 w-full text-black font-semibold hover:bg-lime-500"
+                                className="bg-[#6FBCF0] rounded h-10  mt-6 w-full text-white font-semibold hover:bg-white hover:text-[#6FBCF0]"
                             >
                                 Get SUI
                             </button>
